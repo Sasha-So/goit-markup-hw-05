@@ -1,5 +1,4 @@
-
-   :root {
+:root {
     --main-white-color: #FFFFFF;
     --primary-text-color: #757575;
     --heading-text-color: #212121;
@@ -12,6 +11,8 @@
     --border-color: #ECECEC;
     --card-border:#EEEEEE;
     --icon-color:#AFB1B8;
+    --time:250ms;
+    --transform:cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* reset */
@@ -99,10 +100,24 @@ a {
     margin-right: 50px;
     padding-top: 32px;
     padding-bottom: 32px;
+
+    transition: color var(--time) var(--transform);
 }
 
 .site-nav .link.current {
     color: var(--accent-color);
+    position: relative;
+}
+
+.link.current::after{
+content: '';
+position: absolute;
+bottom: -1px;
+right: 0;
+height: 4px;
+width: 100%;
+border-radius: 2px;
+background-color: var(--accent-color);
 }
 
 .site-nav .link:hover,
@@ -119,6 +134,8 @@ a {
     display: block;
     padding-top: 32px;
     padding-bottom: 32px;
+
+    transition: color var(--time) var(--transform);
 }
 
 .contact.list .link {
@@ -146,6 +163,8 @@ a {
 .nav-icon{
     margin-right: 10px;
     fill: var(--primary-text-color);
+
+    transition: fill var(--time) var(--transform);
 }
 
 /* Hero */
@@ -238,6 +257,27 @@ a {
     display: flex;
     gap: 30px;
 }
+.project-card{
+    position: relative;
+    width: 370px;
+}
+.project-sign {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+    background-color: rgba(47, 48, 58, 0.8);
+    color: var(--main-white-color);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: calc(16/14);
+    text-align: center;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
 
 /* Team */
 .section-team {
@@ -292,6 +332,7 @@ a {
 
 .social-icon {
     fill:var(--icon-color);
+    transition: fill var(--time) var(--transform);
 }
 
 .socials{
@@ -312,6 +353,8 @@ a {
 
     border-radius: 50%;
     background-color: var(--main-white-color);
+
+    transition: background-color var(--time) var(--transform);
 }
 
 .social-link:hover,
@@ -337,10 +380,6 @@ a {
     gap: 30px;
 }
 
-.partners-item {
-    width: 170px;
-    height: 92px;
-}
 
 .partner-link {
     padding: 16px 32px;
@@ -351,10 +390,12 @@ a {
     border-radius: 4px;
 
     outline: transparent;
+    transition: border-color var(--time) var(--transform);
 }
 
 .partner-icon {
     fill: var(--icon-color);
+    transition: fill var(--time) var(--transform);
 }
 
 .partner-link:hover,
@@ -414,6 +455,7 @@ a {
 
 .contact {
     font-style: normal;
+    transition: color var(--time) var(--transform);
 }
 
 .page-footer li:not(:last-child) {
@@ -426,6 +468,7 @@ a {
     width: 206px;
     margin-left: 70px;
 }
+
 .social-wrapper>.title {
     font-weight: 700;
     font-size: 14px;
@@ -448,15 +491,15 @@ a {
 }
 
 .page-footer .social-link {
-    background: rgba(255, 255, 255, 0.1);
-    /* display: flex;
-    align-items: center; */
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: background-color var(--time) var(--transform);
 }
 
 .page-footer .social-link:hover,
 .page-footer .social-link:focus {
-    background: var(--accent-color);
+    background-color: var(--accent-color);
 }
+
 /* Buttons */
 .button {
     border: none;
@@ -479,6 +522,8 @@ a {
     line-height: 1.88;
     letter-spacing: 0.06em;
     padding: 10px 32px;
+
+    transition: background-color var(--time) var(--transform), box-shadow var(--time) var(--transform);
 }
 
 .button.primary:hover,
@@ -495,6 +540,8 @@ a {
     line-height: 1.62;
     text-align: center;
     padding: 6px 22px;
+
+    transition: color var(--time) var(--transform), background-color var(--time) var(--transform), box-shadow var(--time) var(--transform);
 }
 
 .button.secondary:hover,
@@ -529,23 +576,57 @@ a {
 .card-row {
     display: flex;
     flex-wrap: wrap;
-    gap:30px;
+    gap: 30px;
 }
 
-/* .card {
-    width: 370px;
-} */
 .card .link {
     width: 370px;
     display: block;
-}
-.card .link:hover,
-.card .link:focus {
-    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 
-    0px 4px 4px rgba(0, 0, 0, 0.06),
-    1px 4px 6px rgba(0, 0, 0, 0.16);
+
+    transition: box-shadow var(--time) var(--transform);
 }
 
+.card .link:hover,
+.card .link:focus {
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
+        0px 4px 4px rgba(0, 0, 0, 0.06),
+        1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+
+.card-thumb{
+    position: relative;
+    overflow: hidden;
+}
+
+.overlay{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(33, 150, 243, 0.9);
+
+    transform: translateY(100%);
+    transition: transform var(--time) var(--transform);
+}
+
+.card:hover .overlay,
+.card:focus .overlay{
+    transform: translateY(0);
+}
+
+.text-overlay{
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    color: var(--main-white-color);
+    padding: 63px 24px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: calc(28/18);
+    letter-spacing: 0.03em;
+}
 .example {
     color: var(--heading-text-color);
     font-weight: 700;
@@ -567,7 +648,79 @@ a {
     border-bottom: 1px solid var(--card-border);
 }
 
+/* Modal */
+.backdrop {
+    position:fixed;
+    z-index: 120;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: opasity 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
 
+.backdrop.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 528px;
+    min-height: 581px;
+
+    background-color: var(--main-white-color);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 
+    0px 1px 1px rgba(0, 0, 0, 0.14), 
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+
+    transition: transform var(--time) var(--transform);
+}
+
+.backdrop.is-hidden .modal{
+    transform: scale(5.0);
+}
+
+.close-icon{
+    position: absolute;
+    top:8px;
+    right:8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 30px;
+    width: 30px;
+    background-color: var(--main-white-color);
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12),
+    0px 1px 1px rgba(0, 0, 0, 0.14), 
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+
+    transition: box-shadow var(--time) var(--transform);
+}
+
+.close-icon:hover,
+.close-icon:focus {
+    box-shadow: none;
+}
+
+.close-icon:hover .close-tag,
+.close-icon:focus .close-tag {
+    fill: var(--accent-color);
+}
+
+.close-tag{
+    transition: fill var(--time) var(--transform);
+}
 
 
 
