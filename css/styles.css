@@ -610,8 +610,7 @@ background-color: var(--accent-color);
     transition: transform var(--time) var(--transform);
 }
 
-.card:hover .overlay,
-.card:focus .overlay{
+.card .link:hover .overlay {
     transform: translateY(0);
 }
 
